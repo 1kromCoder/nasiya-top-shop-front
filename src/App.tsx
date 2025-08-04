@@ -1,15 +1,9 @@
-import { LoginHome } from "./pages";
-import AuthRoute from "./routes/auth/AuthRoute";
-import DashboardRoute from "./routes/dashboard/DashboardRoute";
+import { useCookies } from "react-cookie";
+import { AuthRoute, DashboardRoutes } from "./routes";
 
 function App() {
-  return (
-    <>
-      <LoginHome />
-      <AuthRoute />
-      <DashboardRoute />
-    </>
-  );
+  const [cookies] = useCookies(["token"]);
+  return cookies.token ? <DashboardRoutes /> : <AuthRoute />;
 }
 
 export default App;
