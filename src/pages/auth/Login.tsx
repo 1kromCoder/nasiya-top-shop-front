@@ -7,16 +7,19 @@ import { LoginIcon, PasswordIcon } from "../../assets/icons";
 import { useFormik } from "formik";
 import { LoginSchema } from "../../validation/Login";
 import { useState } from "react";
+import { Login } from "../../service/Login";
+import { useCookies } from "react-cookie";
 
 const login = () => {
   const [isPenning, setPenning] = useState(false);
+  const [_cookies, setCookies] = useCookies(["token"]);
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
-      initialValues: { username: "", password: "" },
+      initialValues: { name: "", password: "" },
       validationSchema: LoginSchema,
-      onSubmit: (data) => {
+      onSubmit: (data:{name:string, password:string}) => {
+        Login(data, setCookies);
         setPenning(true);
-        console.log(data);
       },
     });
 
@@ -37,22 +40,20 @@ const login = () => {
         <label>
           <Input
             className={`${
-              errors.username && touched.username
-                ? "!border-red-500 !text-red-500"
-                : ""
+              errors.name && touched.name ? "!border-red-500 !text-red-500" : ""
             }`}
-            value={values.username}
+            value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
             prefix={<LoginIcon />}
             allowClear
-            name="username"
+            name="name"
             type="text"
             size="large"
             placeholder="Login"
           />
-          {errors.username && touched.username && (
-            <span className="text-[13px] text-red-500">{errors.username}</span>
+          {errors.name && touched.name && (
+            <span className="text-[13px] text-red-500">{errors.name}</span>
           )}
         </label>
         <label>
@@ -73,7 +74,7 @@ const login = () => {
             placeholder="Parol"
           />
           {errors.password && touched.password && (
-            <span className="text-[13px] text-red-500">{errors.username}</span>
+            <span className="text-[13px] text-red-500">{errors.name}</span>
           )}
         </label>
         <Link

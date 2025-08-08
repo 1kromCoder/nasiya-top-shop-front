@@ -1,33 +1,32 @@
 @import "tailwindcss";
-.containers{
+.containers {
   max-width: 400px;
   margin: 0 auto;
   padding: 0 16px;
 }
-
 
 @keyframes rotate-scale-logo {
   0% {
     transform: rotate(0deg) scale(1);
   }
   50% {
-    transform: rotate(180deg) scale(1.2); 
+    transform: rotate(180deg) scale(1.2);
   }
   100% {
-    transform: rotate(360deg) scale(1); 
+    transform: rotate(360deg) scale(1);
   }
 }
 
-@keyframes logo{
-  0%{
-      transform: scale(1);
+@keyframes logo {
+  0% {
+    transform: scale(1);
   }
-  100%{
-        transform: scale(1.2);
+  100% {
+    transform: scale(1.2);
   }
 }
 
-.logo-icon{
+.logo-icon {
   animation-name: logo;
   animation-duration: 1s;
   animation-iteration-count: infinite;
@@ -37,4 +36,56 @@
 
 .page-loading-img {
   animation: rotate-scale-logo 1.8s ease-in-out infinite;
+}
+
+.calendar-button > svg {
+  transition: all 0.3s;
+}
+
+.calendar-button:hover > svg {
+  transform: scale(1.2);
+}
+
+@media (max-height: 600px) {
+  .text-policy {
+    opacity: 0;
+  }
+}
+
+.active {
+  color: #3478f7;
+}
+
+.ant-picker-content > thead > tr > th {
+  padding-bottom: 10px !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+}
+
+.ant-picker-content
+  > tbody
+  > tr
+  > .ant-picker-cell-in-view
+  > .ant-picker-cell-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  width: 48px !important;
+  height: 48px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  background-color: #f6f6f6 !important;
+  border: 1px solid var(--Stroke-color, #ededed) !important;
+  border-radius: 8px !important;
+}
+
+.ant-picker-content
+  > tbody
+  > tr
+  > .ant-picker-cell-selected
+  > .ant-picker-cell-inner {
+  color: #78a5fa !important;
+  border: 1px solid var(--Primary-Primary400, #78a5fa) !important;
+  background: var(--Primary-Primary100, #dde9fe) !important;
 }
