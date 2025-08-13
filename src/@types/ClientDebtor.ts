@@ -1,6 +1,6 @@
 import type { DebtsType } from "./Debts";
 
-export interface DebtorType {
+export interface ClientDebtor {
   id: number;
   name: string;
   address: string;
@@ -22,4 +22,5 @@ export interface DebtorType {
   Debts?: DebtsType[];
   Phones: { phone: string }[];
   totalDebt: number;
+  star?: boolean;
 }

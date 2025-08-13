@@ -11,8 +11,6 @@ export interface SellerType {
   img: string;
   createdAt: string;
   updatedAt: string;
-  // Debtor: Array<DebtorType>;
-  // Debts: Array<DebtsType>;
   Debts: DebtsType[];
   Debtor?: DebtorType[];
   totalDebt: number;

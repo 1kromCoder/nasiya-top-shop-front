@@ -1,7 +1,18 @@
 import { Route, Routes } from "react-router-dom";
 import { PATH } from "../../hooks/Path";
 import DashboardLayout from "../../provider/DashboardLayout";
-import { Calendar, Dashboard, Debtor, Hisobot, Settings } from "../../pages";
+import {
+  Calendar,
+  Dashboard,
+  DebtCreate,
+  Debtor,
+  DebtorCreate,
+  DebtPayment,
+  DebtSingle,
+  Hisobot,
+  Settings,
+  SingleDebtor,
+} from "../../pages";
 import { Suspense } from "react";
 import { PageLoading } from "../../components";
 
@@ -42,6 +53,14 @@ const DashboardRoutes = () => {
             </Suspense>
           }
         />
+        <Route path={PATH.debtorCreate} element={<DebtorCreate />} />
+        <Route path={PATH.singleDebtor} element={<SingleDebtor />} />
+        <Route path={PATH.debtCreate} element={<DebtCreate />} />
+        <Route path={PATH.debtorEdit} element={<DebtorCreate />} />
+        <Route path={PATH.debtCreate} element={<DebtCreate />} />
+        <Route path={PATH.debtUpdate} element={<DebtCreate />} />
+        <Route path={PATH.debtSingle} element={<DebtSingle />} />
+        <Route path={PATH.debtPayment} element={<DebtPayment />} />
       </Routes>
     </DashboardLayout>
   );

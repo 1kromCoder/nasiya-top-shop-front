@@ -1,5 +1,14 @@
 import { HomeIcon, SettingsIcon, UsersIcon, WalletIcon } from "../assets/icons";
-import { Calendar, Dashboard, Login } from "../pages";
+import {
+  Calendar,
+  Dashboard,
+  DebtCreate,
+  DebtorCreate,
+  DebtPayment,
+  DebtSingle,
+  Login,
+  SingleDebtor,
+} from "../pages";
 import Home from "../pages/auth/Home";
 
 export const PATH = {
@@ -11,6 +20,13 @@ export const PATH = {
   mijoz: "/debtors",
   hisobot: "/hisobot",
   sozlama: "/sozlama",
+  debtorCreate: "/debtors/create",
+  singleDebtor: "/debtors/:id",
+  debtorEdit: "/debtor/:id/edit",
+  debtCreate: "/debtors/:id/create-debt",
+  debtUpdate: "/debtor/:id/debt/:debtId/update",
+  debtSingle: "/debtor/:id/debt/:debtId",
+  debtPayment: "/debtor/:id/debt/:debtId/payment",
 };
 
 export const DashboardList = [
@@ -34,6 +50,41 @@ export const DashboardList = [
     id: 4,
     path: PATH.calendar,
     element: <Calendar />,
+  },
+  {
+    id: 5,
+    path: PATH.debtorCreate,
+    element: <DebtorCreate />,
+  },
+  {
+    id: 6,
+    path: PATH.singleDebtor,
+    element: <SingleDebtor />,
+  },
+  {
+    id: 7,
+    path: PATH.debtCreate,
+    element: <DebtCreate />,
+  },
+  {
+    id: 8,
+    path: PATH.debtorEdit,
+    element: <DebtorCreate />,
+  },
+  {
+    id: 9,
+    path: PATH.debtUpdate,
+    element: <DebtCreate />,
+  },
+  {
+    id: 10,
+    path: PATH.debtSingle,
+    element: <DebtSingle />,
+  },
+  {
+    id: 11,
+    path: PATH.debtPayment,
+    element: <DebtPayment />,
   },
 ];
 

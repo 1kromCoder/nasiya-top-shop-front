@@ -51,13 +51,13 @@ const CustomCalendar: React.FC<{
                 <div className="space-x-[16px]">
                   <Button
                     onClick={() => setNowDate(nowDate?.subtract(1, "month"))}
-                    className="!w-[40px] !p-0 hover:!border-[#735CD8] !rounded-[12px] !h-[40px]"
+                    className="!w-[40px] !p-0 hover:!border-[#735CD8] !bg-[#F6F6F6] !rounded-[12px] !h-[40px]"
                   >
                     <ArrowIcon />
                   </Button>
                   <Button
                     onClick={() => handleChangeMonth(value, onChange)}
-                    className="!w-[40px] !p-0 hover:!border-[#735CD8] !rounded-[12px] !h-[40px]"
+                    className="!w-[40px] !p-0 hover:!border-[#735CD8] !bg-[#F6F6F6] !rounded-[12px] !h-[40px]"
                   >
                     <ArrowIcon classList="rotate-[180deg]" />
                   </Button>

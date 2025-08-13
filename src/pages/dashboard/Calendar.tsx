@@ -79,7 +79,7 @@ const Calendar = () => {
                     (item: CalendarUniqForDayType) => (
                       <div
                         key={item.id}
-                        className="bg-[#FFFFFF] p-[14px] rounded-[16px]"
+                        className="bg-[#FFFFFF] p-[14px] mb-3 rounded-[16px]"
                       >
                         <Heading tag="h3">{item.debts.debtor.name}</Heading>
                         <Text classList="!font-normal">
