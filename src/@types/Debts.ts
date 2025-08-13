@@ -13,6 +13,7 @@ export interface DebtsType {
   ImageDebts: string[];
   createdAt: string;
   updatedAt: string;
+  totalDebt: number;
   totalPayment: number;
   nextPayment: {
     amount: number;

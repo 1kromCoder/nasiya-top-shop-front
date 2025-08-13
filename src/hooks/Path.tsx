@@ -24,9 +24,9 @@ export const PATH = {
   singleDebtor: "/debtors/:id",
   debtorEdit: "/debtor/:id/edit",
   debtCreate: "/debtors/:id/create-debt",
-  debtUpdate: "/debtor/:id/debt/:debtId/update",
-  debtSingle: "/debtor/:id/debt/:debtId",
-  debtPayment: "/debtor/:id/debt/:debtId/payment",
+  debtUpdate: "/debtors/:id/debts/:debtId/update",
+  debtSingle: "/debtors/:id/debts/:debtId",
+  debtPayment: "/debtors/:id/debts/:debtId/payment",
 };
 
 export const DashboardList = [

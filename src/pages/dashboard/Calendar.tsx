@@ -81,7 +81,7 @@ const Calendar = () => {
                         key={item.id}
                         className="bg-[#FFFFFF] p-[14px] mb-3 rounded-[16px]"
                       >
-                        <Heading tag="h3">{item.debts.debtor.name}</Heading>
+                        <Heading tag="h3">{item?.debts?.debtor?.name}</Heading>
                         <Text classList="!font-normal">
                           UZS {formatNumber(item.amount)}
                         </Text>
