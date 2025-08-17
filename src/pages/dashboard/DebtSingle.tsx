@@ -58,22 +58,6 @@ const DebtSingle = () => {
     navigate("update");
     queryClient.invalidateQueries({ queryKey: ["update-debt"] });
   }
-  // const content = (
-  //   <div className="w-[172px]">
-  //     <Text
-  //       onClick={() => handleUpdateBtnClick()}
-  //       classList="!font-medium duration-300 hover:scale-[1.01] cursor-pointer  border-b-[1px] border-[#ECECEC] !pb-[16px] !pt-[8px]"
-  //     >
-  //       Tahrirlash
-  //     </Text>
-  //     <Text
-  //       onClick={() => setShowModal(true)}
-  //       classList="!font-medium duration-300 hover:scale-[1.01] cursor-pointer !pt-[16px] !pb-[8px] !text-[#F94D4D]"
-  //     >
-  //       O‘chirish
-  //     </Text>
-  //   </div>
-  // );
 
   const handleDelete = () => {
     Modal.confirm({
@@ -88,7 +72,7 @@ const DebtSingle = () => {
             headers: { Authorization: `Bearer ${cookies.token}` },
           });
           message.success("Mijoz o‘chirildi");
-          queryClient.invalidateQueries({ queryKey: ["debtor-list"] });
+          queryClient.invalidateQueries({ queryKey: ["single-debtor"] });
           navigate(-1);
         } catch (error) {
           message.error("O‘chirishda xatolik yuz berdi");
@@ -151,11 +135,11 @@ const DebtSingle = () => {
               />
             </label>
             <label className="w-[28%] flex flex-col">
-              <span className="text-[13px] font-semibold mb-[8px]">Sana</span>
+              <span className="text-[13px] font-semibold mb-[8px]">Vaqt</span>
               <Input
                 readOnly
                 className="!h-[44px] !bg-[#F6F6F6]"
-                value={singleDebt?.date?.split("T")[1]?.split(".")[0]}
+                value={singleDebt?.time ?? "00:00:00"}
                 size="large"
               />
             </label>
@@ -197,27 +181,26 @@ const DebtSingle = () => {
           ) : (
             ""
           )}
-          {(!singleDebt?.ImgOfDebt as any).length > 0 ? (
-            ""
-          ) : (
+          {singleDebt?.ImageDebts?.length > 0 && (
             <label className="mt-[24px] block">
               <span className="text-[13px] font-semibold mb-[8px]">
                 Rasmlar
               </span>
-              {/* <div className="flex justify-between flex-wrap">
-                {singleDebt?.ImgOfDebt.map((item: any) => (
+              <div className="flex justify-between flex-wrap">
+                {singleDebt.ImageDebts.map((item: any) => (
                   <img
                     key={item.id}
                     className="w-[48%] rounded-[16px] h-[112px]"
-                    src={`${API}${item}`}
+                    src={`${API}${item.img}`}
                     alt="Debt img"
                     width={300}
                     height={300}
                   />
                 ))}
-              </div> */}
+              </div>
             </label>
           )}
+
           <Button
             onClick={() => navigate("payment")}
             type="primary"

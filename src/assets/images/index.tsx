@@ -1,3 +1,4 @@
 import Logo from "./Logo.svg";
 import Avatar from "./Avatar.svg";
-export { Logo, Avatar };
+import SuccessImg from "./Success-img.svg";
+export { Logo, Avatar, SuccessImg };

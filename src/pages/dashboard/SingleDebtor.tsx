@@ -150,7 +150,7 @@ const SingleDebtor = () => {
                 >
                   <div className="flex items-center justify-between mb-5">
                     <Text classList="!font-medium !text-[14px]">
-                      {item.date?.split("T")[0] ?? "-"} {item.time ?? ""}
+                      {item.date?.split("T")[0] ?? "-"}
                     </Text>
                     <Text classList="!font-medium text-[#3478F7]">
                       {formatNumber(item.activePaymentsSum)} so'm

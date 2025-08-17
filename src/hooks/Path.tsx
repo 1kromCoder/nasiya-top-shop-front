@@ -7,6 +7,8 @@ import {
   DebtPayment,
   DebtSingle,
   Login,
+  Message,
+  Notification,
   SingleDebtor,
 } from "../pages";
 import Home from "../pages/auth/Home";
@@ -18,7 +20,6 @@ export const PATH = {
   seller: "/seller",
   asosiy: "/asosiy",
   mijoz: "/debtors",
-  hisobot: "/hisobot",
   sozlama: "/sozlama",
   debtorCreate: "/debtors/create",
   singleDebtor: "/debtors/:id",
@@ -27,6 +28,8 @@ export const PATH = {
   debtUpdate: "/debtors/:id/debts/:debtId/update",
   debtSingle: "/debtors/:id/debts/:debtId",
   debtPayment: "/debtors/:id/debts/:debtId/payment",
+  hisobot: "/notification",
+  notificationMessage: "/notification/:debtorId",
 };
 
 export const DashboardList = [
@@ -86,6 +89,16 @@ export const DashboardList = [
     path: PATH.debtPayment,
     element: <DebtPayment />,
   },
+  // {
+  //   id: 12,
+  //   path: PATH.notification,
+  //   element: <Notification />,
+  // },
+  {
+    id: 13,
+    path: PATH.notificationMessage,
+    element: <Message />,
+  },
 ];
 
 export const DashboardMenu = [
@@ -105,7 +118,7 @@ export const DashboardMenu = [
     key: 3,
     label: "Hisobot",
     path: PATH.hisobot,
-    icon: <WalletIcon />,
+    icon: <Notification />,
   },
   {
     key: 4,

@@ -10,10 +10,30 @@ import SingleDebtor from "./dashboard/SingleDebtor";
 import DebtCreate from "./dashboard/DebtCreate";
 import DebtSingle from "./dashboard/DebtSingle";
 import DebtPayment from "./dashboard/DebtPayment";
+
 const Login = lazy(
   () =>
     new Promise((resolve: any) => {
       return setTimeout(() => resolve(import("./auth/Login")), 1800);
+    })
+);
+
+const Notification = lazy(
+  () =>
+    new Promise((resolve: any) => {
+      return setTimeout(
+        () => resolve(import("./dashboard/report/Notification")),
+        1000
+      );
+    })
+);
+const Message = lazy(
+  () =>
+    new Promise((resolve: any) => {
+      return setTimeout(
+        () => resolve(import("./dashboard/report/Message")),
+        1000
+      );
     })
 );
 
@@ -30,4 +50,6 @@ export {
   DebtCreate,
   DebtSingle,
   DebtPayment,
+  Notification,
+  Message,
 };

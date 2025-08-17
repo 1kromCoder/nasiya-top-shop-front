@@ -10,6 +10,8 @@ import {
   DebtPayment,
   DebtSingle,
   Hisobot,
+  Message,
+  Notification,
   Settings,
   SingleDebtor,
 } from "../../pages";
@@ -41,7 +43,7 @@ const DashboardRoutes = () => {
           path={PATH.hisobot}
           element={
             <Suspense fallback={<PageLoading />}>
-              <Hisobot />
+              <Notification />
             </Suspense>
           }
         />
@@ -61,6 +63,22 @@ const DashboardRoutes = () => {
         <Route path={PATH.debtUpdate} element={<DebtCreate />} />
         <Route path={PATH.debtSingle} element={<DebtSingle />} />
         <Route path={PATH.debtPayment} element={<DebtPayment />} />
+        {/* <Route
+          path={PATH.notification}
+          element={
+            <Suspense fallback={<PageLoading />}>
+              <Notification />
+            </Suspense>
+          }
+        /> */}
+        <Route
+          path={PATH.notificationMessage}
+          element={
+            <Suspense fallback={<PageLoading />}>
+              <Message />
+            </Suspense>
+          }
+        />
       </Routes>
     </DashboardLayout>
   );

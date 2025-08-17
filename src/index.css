@@ -1,4 +1,14 @@
 @import "tailwindcss";
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .containers {
   max-width: 400px;
   margin: 0 auto;
@@ -63,24 +73,37 @@
   font-size: 12px !important;
 }
 
-.ant-picker, .ant-select-selector{
-  background-color: #F6F6F6 !important;
+.ant-picker,
+.ant-select-selector {
+  background-color: #f6f6f6 !important;
 }
-.ant-picker-dropdown > .ant-picker-panel-container > .ant-picker-panel-layout > div > .ant-picker-panel > .ant-picker-date-panel > .ant-picker-body > .ant-picker-content > tbody > tr > .ant-picker-cell > .ant-picker-cell-inner{
+.ant-picker-dropdown
+  > .ant-picker-panel-container
+  > .ant-picker-panel-layout
+  > div
+  > .ant-picker-panel
+  > .ant-picker-date-panel
+  > .ant-picker-body
+  > .ant-picker-content
+  > tbody
+  > tr
+  > .ant-picker-cell
+  > .ant-picker-cell-inner {
   width: 34px !important;
   height: 34px !important;
 }
-.ant-upload-list-item-container, .ant-upload-select{
+.ant-upload-list-item-container,
+.ant-upload-select {
   width: 48% !important;
   height: 112px !important;
 }
-.ant-upload-list-item > a > img{
+.ant-upload-list-item > a > img {
   width: 100% !important;
 }
-.ant-popover > .ant-popover-arrow ~ .ant-popover-content > .ant-popover-inner{
+.ant-popover > .ant-popover-arrow ~ .ant-popover-content > .ant-popover-inner {
   border-radius: 16px !important;
 }
-.payment-debt > path{
+.payment-debt > path {
   stroke: black;
 }
 
@@ -111,3 +134,23 @@
   background: var(--Primary-Primary100, #dde9fe) !important;
 }
 
+.payment-debt > path {
+  stroke: black;
+}
+.ant-segmented-group {
+  height: 100% !important;
+}
+.ant-segmented-item {
+  width: 50% !important;
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ant-segmented-item-label {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+.ant-segmented-item-selected {
+  color: #3478f7 !important;
+}

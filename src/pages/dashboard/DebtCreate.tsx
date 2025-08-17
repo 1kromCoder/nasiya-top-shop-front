@@ -45,7 +45,7 @@ const DebtCreate = () => {
   function checkToday(e: CheckboxChangeEvent) {
     if (e.target.checked) {
       setTime(dayjs());
-      setDate(dayjs().toISOString());
+      setDate(dayjs().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"));
     } else {
       setTime(null);
     }
@@ -64,10 +64,9 @@ const DebtCreate = () => {
       if (images.length > 0) {
         await Promise.all(
           images.map((item: any) => {
-            const imgPath = `/file/${item}`;
             instance().post(
               "/images-debts",
-              { img: imgPath, debtsId: res.data.id },
+              { img: item, debtsId: res.data.id },
               { headers: { Authorization: `Bearer ${cookies.token}` } }
             );
           })
@@ -83,6 +82,7 @@ const DebtCreate = () => {
       console.log(err, "error creating debt");
     },
   });
+  
 
   const { mutate: updateDebt } = useMutation({
     mutationFn: async (data: any) => {
@@ -93,11 +93,10 @@ const DebtCreate = () => {
       if (images.length > 0) {
         await Promise.all(
           images.map((item: any) => {
-            if (item.name) {
-              const imgPath = `/uploads${item.name.split("uploads")[1]}`;
+            if (item) {
               return instance().post(
                 "/images-debts",
-                { img: imgPath, debtsId: Number(debtId) },
+                { img: item, debtsId: Number(debtId) },
                 { headers: { Authorization: `Bearer ${cookies.token}` } }
               );
             }
@@ -116,6 +115,8 @@ const DebtCreate = () => {
 
   const createDebtSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(images, "date");
+
     const data: Partial<DebtsType> = {
       productName,
       date,
@@ -127,14 +128,6 @@ const DebtCreate = () => {
     };
 
     if (debtId) {
-      const result = images.map((item: any) => {
-        if (item.name) {
-          return `/uploads${item.name.split("uploads")[1]}`;
-        } else {
-          return item;
-        }
-      });
-      data.ImageDebts = result;
       updateDebt(data);
     } else {
       createDebt(data);
@@ -150,15 +143,15 @@ const DebtCreate = () => {
               headers: { Authorization: `Bearer ${cookies.token}` },
             })
             .then((res) => {
-              setProductName(res.data.data.productName);
-              setAmount(res.data.data.amount);
-              setTime(dayjs(res.data.data.time));
-              setPeriod(res.data.data.period);
-              setDate(res.data.data.date);
-              if (res.data.data.note) {
+              setProductName(res.data.productName);
+              setAmount(res.data.amount);
+              setTime(dayjs(res.data.time));
+              setPeriod(res.data.period);
+              setDate(res.data.date);
+              setImages(res.data.ImageDebts.map((img: any) => img.img));
+              if (res.data.note) {
                 setIsNote(true);
-                setNote(res.data.data.note);
-                setImages(res.data.data.ImgOfDebt);
+                setNote(res.data.note);
               }
               return {};
             })

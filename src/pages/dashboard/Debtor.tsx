@@ -156,7 +156,7 @@ const Debtor = () => {
                 Jami nasiya:
               </span>
               <span className="!text-[16px] !font-medium !text-[#F94D4D]">
-                -{formatNumber(item?.totalDebt || 0)} so‘m
+                {formatNumber(item?.totalDebt || 0)} so‘m
               </span>
               <button onClick={()=>changeStar(item.id)} className="absolute duration-300 hover:scale-[1.2] cursor-pointer top-[33px] right-[19px]">{item.star ? <StartIconActive/> : <StarIcon/>}</button>
             </div>

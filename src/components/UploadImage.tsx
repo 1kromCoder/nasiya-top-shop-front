@@ -44,11 +44,10 @@ const UploadImage: React.FC<Props> = ({ setImgNames, imgNames }) => {
   }) => {
     setFileList(newFileList);
 
-    if (file.status === "done" && file.response) {
-      console.log(file, "response from server");
+    if (file.status === "done" && file.response) {      
       
       const fileName = file.response?.url || file.name;
-      setImgNames((prev) => [...prev, fileName]);
+      setImgNames((prev) => [...prev, `/file/${fileName}`]);
     }
 
     if (file.status === "removed") {
@@ -71,7 +70,7 @@ const UploadImage: React.FC<Props> = ({ setImgNames, imgNames }) => {
           uid: String(index),
           name: item,
           status: "done",
-          url: `http://13.51.107.76/uploads/${item}`,
+          url: `http://13.51.107.76${item}`,
         }))
       );
     }
