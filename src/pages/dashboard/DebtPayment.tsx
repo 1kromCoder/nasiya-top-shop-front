@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Heading, Text } from "../../components";
 import { ArrowIcon, BackIcon } from "../../assets/icons";
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { instance } from "../../hooks/instance";
 import { useCookies } from "react-cookie";
@@ -36,9 +36,6 @@ const DebtPayment = () => {
         .then((res) => res.data),
   });
 
-
-
-  // one month
   const { mutate: oneMonthMutate, isPending: oneMonthPenning } = useMutation({
     mutationFn: (data: { debtsId: string | undefined; month: number }) =>
       instance().post("/payments", data, {
@@ -61,8 +58,6 @@ const DebtPayment = () => {
     });
   }
 
-  // one month
-  // any payment
   const { mutate: oneAnyPayment, isPending: anyPaymenPenning } = useMutation({
     mutationFn: (data: { debtsId: string | undefined; amount: number }) =>
       instance().post("/payments", data, {
@@ -85,9 +80,6 @@ const DebtPayment = () => {
     });
   }
 
-  // any payment
-
-  // Choose date to pay
   const [totolPay, setTotalPay] = useState<number[]>([]);
   const [payAll, setPayAll] = useState(false);
   const [payMonth, setPayMonth] = useState<Array<number>>([]);

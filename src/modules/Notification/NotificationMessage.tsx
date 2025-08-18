@@ -12,7 +12,6 @@ const NotificationMessage = () => {
   const [cookies] = useCookies(["token"]);
   const navigate = useNavigate();
 
-  // Get All Messages
   const { data = [], isLoading } = useQuery<NotificationType[]>({
     queryKey: ["messages"],
     queryFn: () =>
@@ -22,7 +21,6 @@ const NotificationMessage = () => {
         })
         .then((res) => res.data.data),
   });
-  // Get All Messages
   return (
     <div>
       {isLoading ? (
@@ -45,10 +43,10 @@ const NotificationMessage = () => {
               </Text>
             </div>
             <Text classList="!font-semibold !text-[12px]">
-              {item?.Sms[0]?.date.split("T")[0].split("-")[2]}{" "}
+              {item?.Sms[0]?.createdAt?.split("T")[0].split("-")[2]}{" "}
               {item.Sms.length > 0
                 ? FindMonth(
-                    Number(item?.Sms[0]?.date.split("T")[0].split("-")[1])
+                    Number(item?.Sms[0]?.createdAt?.split("T")[0].split("-")[1])
                   )
                 : "---"}
             </Text>

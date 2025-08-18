@@ -9,8 +9,10 @@ import {
   DebtorCreate,
   DebtPayment,
   DebtSingle,
-  Hisobot,
+  Example,
+  ExampleCreate,
   Message,
+  MyProfile,
   Notification,
   Settings,
   SingleDebtor,
@@ -63,14 +65,7 @@ const DashboardRoutes = () => {
         <Route path={PATH.debtUpdate} element={<DebtCreate />} />
         <Route path={PATH.debtSingle} element={<DebtSingle />} />
         <Route path={PATH.debtPayment} element={<DebtPayment />} />
-        {/* <Route
-          path={PATH.notification}
-          element={
-            <Suspense fallback={<PageLoading />}>
-              <Notification />
-            </Suspense>
-          }
-        /> */}
+
         <Route
           path={PATH.notificationMessage}
           element={
@@ -79,6 +74,10 @@ const DashboardRoutes = () => {
             </Suspense>
           }
         />
+        <Route path={PATH.me} element={<MyProfile />} />
+        <Route path={PATH.example} element={<Example />} />
+        <Route path={PATH.exampleCreate} element={<ExampleCreate />} />
+        <Route path={PATH.exampleEdit} element={<ExampleCreate />} />
       </Routes>
     </DashboardLayout>
   );

@@ -23,13 +23,3 @@ export interface DebtsType {
   activePaymentsSum: number;
   monthlyAmount: number;
 }
-
-// export interface DebtsTypeWithDebtorStatus {
-//   debtId: number;
-//   nasiya: number;
-//   tolangan: number;
-//   qolgan_nasiya: number;
-//   muddati: number;
-//   tolangan_oyi: number;
-//   qolgan_oyi: number;
-// }

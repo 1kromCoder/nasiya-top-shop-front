@@ -1,5 +1,11 @@
 import { Button, Input, Popover, Radio, Select } from "antd";
-import { CreateDebtorIcon, SearchIcon, SliderIcon, StarIcon, StartIconActive } from "../../assets/icons";
+import {
+  CreateDebtorIcon,
+  SearchIcon,
+  SliderIcon,
+  StarIcon,
+  StartIconActive,
+} from "../../assets/icons";
 import { Heading } from "../../components";
 import type { DebtorType } from "../../@types/Debtor";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -24,13 +30,11 @@ const Debtor = () => {
     sortBy?: "createdAt" | "name";
   }>({});
   const [searchValue, setSearchValue] = useState<string>("");
+
   const search = debounce(searchValue, 300);
+
   function handleSearch(value: string | undefined) {
-    if (value) {
-      setSearchValue(value);
-    } else {
-      setSearchValue(" ");
-    }
+    setSearchValue(value || "");
   }
 
   const [clicked, setClicked] = useState<boolean>(false);
@@ -74,9 +78,15 @@ const Debtor = () => {
     setClicked(false);
   }
   useEffect(() => {
-    if (search) {
-      setParams({ ...params, search });
-    }
+    const q = search.trim();
+    setParams((prev) => {
+      if (q) {
+        return { ...prev, search: q }; 
+      } else {
+        const { search, ...rest } = prev;
+        return rest;
+      }
+    });
   }, [search]);
 
   const { mutate: changeStar } = useMutation({
@@ -115,6 +125,8 @@ const Debtor = () => {
     <div className="containers relative">
       <div className="flex justify-between !mt-[30px] sticky top-[0] bg-white !z-50 items-center">
         <Input
+          value={searchValue}
+          allowClear
           onChange={(e) => handleSearch(e.target.value)}
           className="!bg-[#F6F6F6] border-[1px] flex text-[16px] font-medium gap-[10px] !w-[303px] !h-[48px] !rounded-[12px] py-[12px] px-[16px]"
           type="text"
@@ -158,7 +170,16 @@ const Debtor = () => {
               <span className="!text-[16px] !font-medium !text-[#F94D4D]">
                 {formatNumber(item?.totalDebt || 0)} so‘m
               </span>
-              <button onClick={()=>changeStar(item.id)} className="absolute duration-300 hover:scale-[1.2] cursor-pointer top-[33px] right-[19px]">{item.star ? <StartIconActive/> : <StarIcon/>}</button>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  changeStar(item.id);
+                }}
+                className="absolute duration-300 hover:scale-[1.2] cursor-pointer top-[33px] right-[19px]"
+              >
+                {item.star ? <StartIconActive /> : <StarIcon />}
+              </button>
             </div>
           ))
         )}

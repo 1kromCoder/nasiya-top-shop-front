@@ -21,7 +21,6 @@ createRoot(document.getElementById("root")!).render(
   <CookiesProvider>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-      {/* <Toaster position="top-0" reverseOrder={false}/> */}
         <App />
       </BrowserRouter>
     </QueryClientProvider>

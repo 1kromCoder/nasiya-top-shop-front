@@ -11,10 +11,9 @@ export interface NotificationType {
     {
       id: number;
       text: string;
-      sent: boolean;
       debtorId: number;
       date: string;
-      exampleId: number;
+      createdAt: string;
     }
   ];
   Phones: [

@@ -392,3 +392,21 @@ export const SendMessageIcon = () => (
     />
   </svg>
 );
+
+export const MiniMoreIcon = ({ classList }: { classList?: string }) => (
+  <svg
+    className={classList}
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M10 9.99643H10.0083V10.0036H10V9.99643ZM10 5H10.0083V5.00714H10V5ZM10 14.9929H10.0083V15H10V14.9929Z"
+      stroke="black"
+      strokeWidth="3"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

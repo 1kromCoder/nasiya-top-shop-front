@@ -106,6 +106,7 @@ const DebtorCreate = () => {
       toast.success("Qo‘shildi");
       navigate(-1);
       queryClient.invalidateQueries({ queryKey: ["debtor-list"] });
+      queryClient.invalidateQueries({ queryKey: ["add-message-debtor"] });
     },
   });
 

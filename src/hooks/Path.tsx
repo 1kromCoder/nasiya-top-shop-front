@@ -1,4 +1,4 @@
-import { HomeIcon, SettingsIcon, UsersIcon, WalletIcon } from "../assets/icons";
+import { HomeIcon, SettingsIcon, UsersIcon } from "../assets/icons";
 import {
   Calendar,
   Dashboard,
@@ -6,8 +6,11 @@ import {
   DebtorCreate,
   DebtPayment,
   DebtSingle,
+  Example,
+  ExampleCreate,
   Login,
   Message,
+  MyProfile,
   Notification,
   SingleDebtor,
 } from "../pages";
@@ -20,7 +23,6 @@ export const PATH = {
   seller: "/seller",
   asosiy: "/asosiy",
   mijoz: "/debtors",
-  sozlama: "/sozlama",
   debtorCreate: "/debtors/create",
   singleDebtor: "/debtors/:id",
   debtorEdit: "/debtor/:id/edit",
@@ -30,6 +32,11 @@ export const PATH = {
   debtPayment: "/debtors/:id/debts/:debtId/payment",
   hisobot: "/notification",
   notificationMessage: "/notification/:debtorId",
+  sozlama: "/settings",
+  me: "/my-profile",
+  example: "/example",
+  exampleCreate: "/example/create",
+  exampleEdit: "/example/:id/edit",
 };
 
 export const DashboardList = [
@@ -89,15 +96,31 @@ export const DashboardList = [
     path: PATH.debtPayment,
     element: <DebtPayment />,
   },
-  // {
-  //   id: 12,
-  //   path: PATH.notification,
-  //   element: <Notification />,
-  // },
+
   {
     id: 13,
     path: PATH.notificationMessage,
     element: <Message />,
+  },
+  {
+    id: 14,
+    path: PATH.me,
+    element: <MyProfile />,
+  },
+  {
+    id: 15,
+    path: PATH.example,
+    element: <Example />,
+  },
+  {
+    id: 16,
+    path: PATH.exampleCreate,
+    element: <ExampleCreate />,
+  },
+  {
+    id: 17,
+    path: PATH.exampleEdit,
+    element: <ExampleCreate />,
   },
 ];
 
