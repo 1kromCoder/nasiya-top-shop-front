@@ -37,6 +37,7 @@ const CustomCalendar: React.FC<{
         onChange={handleChooseDay}
         fullscreen={false}
         value={nowDate}
+        
         headerRender={({ value, onChange }) => {
           useEffect(() => {
             setNowDate(value);

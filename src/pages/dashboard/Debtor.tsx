@@ -25,9 +25,9 @@ const Debtor = () => {
   const queryClient = useQueryClient();
 
   const [params, setParams] = useState<{
-    search?: string;
+    name?: string;
     sortOrder?: "asc" | "desc";
-    sortBy?: "createdAt" | "name";
+    sortBy?: "createdAt" | "name" | "address";
   }>({});
   const [searchValue, setSearchValue] = useState<string>("");
 
@@ -39,25 +39,31 @@ const Debtor = () => {
 
   const [clicked, setClicked] = useState<boolean>(false);
   const plainOptions: CheckboxGroupProps<string>["options"] = [
-    { label: "A-Z", value: "asc" },
-    { label: "Z-A", value: "desc" },
+    { label: "ASC", value: "asc" },
+    { label: "DESC", value: "desc" },
   ];
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const [sortBy, setSortBy] = useState<"createdAt" | "name">("createdAt");
+  const [sortBy, setSortBy] = useState<"createdAt" | "name" | "address">(
+    "createdAt"
+  );
   const content = (
     <form onSubmit={handleSort} className="flex flex-col gap-[15px] ">
       <Select
-        onChange={(e: "createdAt" | "name") => setSortBy(e)}
+        onChange={(e: "createdAt" | "name" | "address") => setSortBy(e)}
         style={{ width: "100%" }}
         defaultValue={"createdAt"}
         options={[
           {
-            label: "Sana bo'yicha",
+            label: "CreatedAt bo'yicha",
             value: "createdAt",
           },
           {
-            label: "Ism bo'yicha",
+            label: "Name bo'yicha",
             value: "name",
+          },
+          {
+            label: "Address bo'yicha",
+            value: "address",
           },
         ]}
       />
@@ -81,9 +87,9 @@ const Debtor = () => {
     const q = search.trim();
     setParams((prev) => {
       if (q) {
-        return { ...prev, search: q }; 
+        return { ...prev, name: q };
       } else {
-        const { search, ...rest } = prev;
+        const { name, ...rest } = prev;
         return rest;
       }
     });
@@ -106,8 +112,8 @@ const Debtor = () => {
     queryFn: () =>
       instance()
         .get("/debtor", {
-          params,
           headers: { Authorization: `Bearer ${cookies.token}` },
+          params,
         })
         .then((res) => res.data.data)
         .catch((err) => {
@@ -139,7 +145,7 @@ const Debtor = () => {
           open={clicked}
           trigger={"click"}
           content={content}
-          title="Title"
+          title="Sortlash va Filtrlash"
         >
           <button
             onClick={() => setClicked(!clicked)}
