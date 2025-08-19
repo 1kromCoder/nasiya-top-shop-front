@@ -96,8 +96,10 @@ const SingleDebtor = () => {
   );
 
   function findPrecent(Debt: any) {
-    if (!Debt) return 0;
-    return 100 - (+Debt.activePaymentsSum / +Debt.amount) * 100;
+
+    return (
+      (+Debt.activePaymentsSum / (+Debt.amount + +Debt.activePaymentsSum)) * 100
+    );
   }
 
   return (
@@ -153,7 +155,7 @@ const SingleDebtor = () => {
                       {item.date?.split("T")[0] ?? "-"}
                     </Text>
                     <Text classList="!font-medium text-[#3478F7]">
-                      {formatNumber(item.activePaymentsSum)} so'm
+                      {formatNumber(item.amount)} so'm
                     </Text>
                   </div>
                   <Text classList="!font-normal !text-3 ">

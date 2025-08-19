@@ -17,7 +17,7 @@ const login = () => {
     useFormik({
       initialValues: { name: "", password: "" },
       validationSchema: LoginSchema,
-      onSubmit: (data:{name:string, password:string}) => {
+      onSubmit: (data: { name: string; password: string }) => {
         Login(data, setCookies);
         setPenning(true);
       },
@@ -78,8 +78,9 @@ const login = () => {
           )}
         </label>
         <Link
+          onChange={(e) => e.preventDefault()}
+          to={"/auth/forgot-password"}
           className="text-[13px] mb-[46px] text-[#3478F7] border-b-[1px] border-[#3478F7] w-[130px] ml-auto block text-end mt-[10px]"
-          to={"#"}
         >
           Parolni unutdingizmi?
         </Link>

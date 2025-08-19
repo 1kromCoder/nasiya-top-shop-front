@@ -25,6 +25,12 @@ export const termList = [
   { value: 4, label: "4 oy" },
   { value: 5, label: "5 oy" },
   { value: 6, label: "6 oy" },
+  { value: 7, label: "7 oy" },
+  { value: 8, label: "8 oy" },
+  { value: 9, label: "9 oy" },
+  { value: 10, label: "10 oy" },
+  { value: 11, label: "11 oy" },
+  { value: 12, label: "12 oy" },
 ];
 
 const DebtCreate = () => {
@@ -82,7 +88,6 @@ const DebtCreate = () => {
       console.log(err, "error creating debt");
     },
   });
-  
 
   const { mutate: updateDebt } = useMutation({
     mutationFn: async (data: any) => {
@@ -115,7 +120,6 @@ const DebtCreate = () => {
 
   const createDebtSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(images, "date");
 
     const data: Partial<DebtsType> = {
       productName,

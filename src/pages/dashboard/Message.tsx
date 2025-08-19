@@ -1,20 +1,20 @@
 import { useCookies } from "react-cookie";
 import { useNavigate, useParams } from "react-router-dom";
-import { Heading, Text } from "../../../components";
+import { Heading, Text } from "../../components";
 import {
   BackIcon,
   CreateExampleIcon,
   SendMessageIcon,
-} from "../../../assets/icons";
+} from "../../assets/icons";
 import { message, Modal, Popover, Switch } from "antd";
 import { MoreOutlined } from "@ant-design/icons";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { instance } from "../../../hooks/instance";
-import type { MessageType } from "../../../@types/NotificationType";
-import { FindMonth } from "../../../hooks/FindMonth";
+import { instance } from "../../hooks/instance";
+import type { MessageType } from "../../@types/NotificationType";
+import { FindMonth } from "../../hooks/FindMonth";
 import { useState, type FormEvent } from "react";
-import CustomModal from "../../../components/CustomModal";
-import type { ExampleType } from "../../../@types/ExampleType";
+import CustomModal from "../../components/CustomModal";
+import type { ExampleType } from "../../@types/ExampleType";
 
 const NotificationMessage = () => {
   const { debtorId } = useParams();
@@ -87,7 +87,6 @@ const NotificationMessage = () => {
       mutate(data);
     }
   }
-
 
   const handleDelete = () => {
     Modal.confirm({

@@ -161,7 +161,7 @@ const DebtSingle = () => {
             <Input
               readOnly
               className="!h-[44px] !bg-[#F6F6F6]"
-              value={formatNumber(singleDebt?.activePaymentsSum ?? 0)}
+              value={formatNumber(singleDebt?.amount ?? 0)}
               size="large"
             />
           </label>

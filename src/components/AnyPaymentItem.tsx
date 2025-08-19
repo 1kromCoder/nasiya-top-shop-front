@@ -13,29 +13,29 @@ import { formatNumber } from "../hooks/FormatNumber";
 const AnyPaymentItem: FC<{
   setTotalPay: Dispatch<SetStateAction<number[]>>;
   payAll: boolean;
-  payMonth: number[];
-  item: PaymentType;
+  payMonth: { month: number; total: number }[];
+  item: { month: number; total: number };
   index: number;
-  setPayMonth: Dispatch<SetStateAction<number[]>>;
-}> = ({ payAll, setPayMonth, item, setTotalPay, index }) => {
+  endDate?: string;
+  setPayMonthPayed: Dispatch<SetStateAction<{ month: number; total: number }[]>>;
+}> = ({ payAll, setPayMonthPayed, item, endDate, setTotalPay, index }) => {
   const [check, setCheck] = useState<boolean>(false);
 
   function handleCheck() {
     setCheck((prev) => !prev);
-
-    setPayMonth((prev) => {
-      if (!check) {
-        return [...prev, item.month];
+    setPayMonthPayed((prev) => {
+      const found = prev.find((data) => data.month === item.month);
+      if (!found) {
+        return [...prev, item];
       } else {
-        return prev.filter((id) => id !== item.month);
+        return prev.filter((data) => data.month !== item.month);
       }
     });
-
     setTotalPay((prev) => {
       if (!check) {
-        return [...prev, item.amount];
+        return [...prev, item.total];
       } else {
-        const deleteIndex = prev.findIndex((data) => data === item.amount);
+        const deleteIndex = prev.findIndex((data) => data === item.total);
         if (deleteIndex > -1) {
           const copy = [...prev];
           copy.splice(deleteIndex, 1);
@@ -57,15 +57,15 @@ const AnyPaymentItem: FC<{
     >
       <div>
         <Text classList="!font-medium !text-[12px]">{index + 1}-oy</Text>
-        {item.endDate && (
+        {endDate && (
           <Text classList="!font-semibold !text-[14px]">
-            {item.endDate.split("T")[0]}
+            {endDate.split("T")[0]}
           </Text>
         )}
       </div>
       <div className="flex items-center gap-[12px]">
         <Text classList="!font-bold !text-[14px]">
-          {formatNumber(item.amount)} so‘m
+          {formatNumber(item.total)} so‘m
         </Text>
         <Checkbox checked={check} />
       </div>

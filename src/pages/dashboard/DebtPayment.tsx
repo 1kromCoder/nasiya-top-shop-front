@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Heading, Text } from "../../components";
 import { ArrowIcon, BackIcon } from "../../assets/icons";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { instance } from "../../hooks/instance";
 import { useCookies } from "react-cookie";
@@ -35,6 +35,18 @@ const DebtPayment = () => {
         })
         .then((res) => res.data),
   });
+
+  useEffect(() => {
+    if (debtData) {
+      setPayMonth([]);
+      for (let i = 1; i <= (debtData?.period || 0); i++) {
+        setPayMonth((prev) => [
+          ...prev,
+          { month: i, total: debtData?.monthlyAmount || 0 },
+        ]);
+      }
+    }
+  }, [debtData]);
 
   const { mutate: oneMonthMutate, isPending: oneMonthPenning } = useMutation({
     mutationFn: (data: { debtsId: string | undefined; month: number }) =>
@@ -82,13 +94,17 @@ const DebtPayment = () => {
 
   const [totolPay, setTotalPay] = useState<number[]>([]);
   const [payAll, setPayAll] = useState(false);
-  const [payMonth, setPayMonth] = useState<Array<number>>([]);
+  const [payMonth, setPayMonth] = useState<
+    Array<{ month: number; total: number }>
+  >([]);
+  const [payMonthPayed, setPayMonthPayed] = useState<
+    Array<{ month: number; total: number }>
+  >([]);
   const { mutate: oneManyPayment, isPending: manyPaymenPenning } = useMutation({
     mutationFn: (data: { debtsId: string | undefined; months: number[] }) =>
       instance().post("/payments", data, {
         headers: { Authorization: `Bearer ${cookies.token}` },
       }),
-
     onSuccess: () => {
       setShowSuccess(true);
       queryClient.invalidateQueries({ queryKey: ["single-debt"] });
@@ -103,25 +119,21 @@ const DebtPayment = () => {
   function handleManyMonthClick() {
     oneManyPayment({
       debtsId,
-      months: payMonth,
+      months: payMonthPayed.map((item) => item.month),
     });
   }
+
   function handlePayAll() {
     setPayAll((_prev: boolean) => {
       if (!payAll) {
-        setPayMonth(
-          debtData?.Payments ? debtData?.Payments.map((item) => item.month) : []
-        );
-        setTotalPay(
-          debtData?.Payments
-            ? debtData?.Payments.map((item) => item.amount)
-            : []
-        );
+        for (let i = 1; i <= (debtData?.period || 0); i++) {
+          setTotalPay((prev) => [...prev, debtData?.monthlyAmount || 0]);
+        }
+        setPayMonthPayed(payMonth);
         return true;
       } else {
-        setPayMonth([]);
         setTotalPay([]);
-
+        setPayMonthPayed([]);
         return false;
       }
     });
@@ -135,7 +147,6 @@ const DebtPayment = () => {
       return formatNumber(total);
     }
   }
-  console.log(debtData, "debtData");
 
   return (
     <>
@@ -269,14 +280,15 @@ const DebtPayment = () => {
           </button>
         </div>
         <ul>
-          {debtData?.Payments?.map((item, index) => (
+          {payMonth?.map((item, index) => (
             <AnyPaymentItem
               setTotalPay={setTotalPay}
               payAll={payAll}
+              endDate={debtData?.createdAt}
+              key={index}
               item={item}
-              key={item.id}
               index={index}
-              setPayMonth={setPayMonth}
+              setPayMonthPayed={setPayMonthPayed}
               payMonth={payMonth}
             />
           ))}

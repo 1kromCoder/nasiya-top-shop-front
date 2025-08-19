@@ -24,7 +24,7 @@ const Notification = lazy(
   () =>
     new Promise((resolve: any) => {
       return setTimeout(
-        () => resolve(import("./dashboard/report/Notification")),
+        () => resolve(import("./dashboard/Notification")),
         1000
       );
     })
@@ -32,10 +32,7 @@ const Notification = lazy(
 const Message = lazy(
   () =>
     new Promise((resolve: any) => {
-      return setTimeout(
-        () => resolve(import("./dashboard/report/Message")),
-        1000
-      );
+      return setTimeout(() => resolve(import("./dashboard/Message")), 1000);
     })
 );
 

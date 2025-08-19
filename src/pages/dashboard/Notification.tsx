@@ -1,18 +1,18 @@
 import { Button, Segmented } from "antd";
-import { CreateExampleIcon, MessageIcon } from "../../../assets/icons";
-import { Heading, Text } from "../../../components";
+import { CreateExampleIcon, MessageIcon } from "../../assets/icons";
+import { Heading, Text } from "../../components";
 import { useState } from "react";
-import { HistoryPayment, NotificationMessage } from "../../../modules";
+import { HistoryPayment, NotificationMessage } from "../../modules";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { instance } from "../../../hooks/instance";
-import type { NotificationType } from "../../../@types/NotificationType";
-import CustomModal from "../../../components/CustomModal";
-import { PhoneFormat } from "../../../hooks/PhoneFormat";
-import { FindMonth } from "../../../hooks/FindMonth";
-import NotificationMessageNotFound from "../../../modules/Notification/NotificationMessageNotFound";
+import { instance } from "../../hooks/instance";
+import type { NotificationType } from "../../@types/NotificationType";
+import CustomModal from "../../components/CustomModal";
+import { PhoneFormat } from "../../hooks/PhoneFormat";
+import { FindMonth } from "../../hooks/FindMonth";
+import NotificationMessageNotFound from "../../modules/Notification/NotificationMessageNotFound";
 import { useCookies } from "react-cookie";
-import { PATH } from "../../../hooks/Path";
+import { PATH } from "../../hooks/Path";
 
 const Notification = () => {
   const [showMessage, setShowMessage] = useState<
